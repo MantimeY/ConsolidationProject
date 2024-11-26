@@ -94,12 +94,33 @@ rounds = 0
 max_Rounds = 5
 
 
-
-
 # Responds based on the player's input
 if player_Choice == "yes":
     print("great, Let's play")
     
+# play up to the max_rounds and check the score
+
+    while rounds < max_Rounds:
+        print("Round" + str(rounds+1))
+   
+         # Simulate a turn and the scores for that round
+        rounds_score = play_Turn()
+        player_Score += rounds_score
+        print("Your Current score is: " + str(player_Score))
+    
+	    # check if player has reached a score of 50 or more
+        if player_Score >= 50:
+            print("Congratulations! You've won the game with a score of: " + str(player_Score))
+        break
+    
+    rounds +=1
+    
+	# If max_rounds are reached, print the final score
+    if rounds == max_Rounds: 
+         print("Game over. Your final score is: " + str(player_Score))
+    
+     #loop ends here (Comment is for me)   
+
 elif player_Choice == "no":
     print("Okay we'll play another time")
 else:
