@@ -83,21 +83,23 @@ def play_Turn():
     print("You decided to stop. Your score for this turn is:", score)
     return score
 
-# Greets the player 
-print ("Hello welcome to the game Tuple Out.")
+ # function to initialize and manage the game rounds
+def start_game():
+    
+    # Greets the player 
+    print ("Hello welcome to the game Tuple Out.")
 # Ask the user if they would like to play
 player_Choice = input("Would you like to play Tuple Out? (yes or no): ").strip().lower()
-
-#intialize game variables
-player_Score = 0
-rounds = 0
-max_Rounds = 5
-
 
 # Responds based on the player's input
 if player_Choice == "yes":
     print("great, Let's play")
     
+	#intialize game variables
+    player_Score = 0
+    rounds = 0
+    max_Rounds = 5
+    target_Score= 50
 # play up to the max_rounds and check the score
 
     while rounds < max_Rounds:
@@ -111,9 +113,9 @@ if player_Choice == "yes":
 	    # check if player has reached a score of 50 or more
         if player_Score >= 50:
             print("Congratulations! You've won the game with a score of: " + str(player_Score))
-        break
+            break
     
-    rounds +=1
+        rounds +=1
     
 	# If max_rounds are reached, print the final score
     if rounds == max_Rounds: 
@@ -125,4 +127,5 @@ elif player_Choice == "no":
     print("Okay we'll play another time")
 else:
     print("Invalid response. Please type 'yes' or 'no'.")
+
 
