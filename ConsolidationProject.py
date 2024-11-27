@@ -1,7 +1,7 @@
  #importing modules I will need
-import sys
-import os
-import csv
+# import sys
+# import os
+# import csv
 import random
 
 # Function to  generate list of three random ints vetween 1 and 6, simulating the roll of three dice.
@@ -9,7 +9,8 @@ def roll_Dice():
     """
     Rolls three dice and retruns list of integers represention the outcome
 	"""
-    return	[random.randint(1,6) for _ in range(3)]
+    results = [random.randint(1,6) for _ in range(3)]
+    return results
 
 # Function to calculate the players score for a round 
 def check_tuple_out(dice_roll):
@@ -17,7 +18,8 @@ def check_tuple_out(dice_roll):
     checks to see if all three dice are the same
     return true if the player is tupled out, false if not
     """
-    return dice_roll[0] == dice_roll[1] == dice_roll[2]
+    result = dice_roll[0] == dice_roll[1] == dice_roll[2]
+    return result
 
 # Function to find which dice gets fixed
 def get_fixed_dice(dice_roll):
@@ -27,6 +29,7 @@ def get_fixed_dice(dice_roll):
     """
     fixed_values = {val for val in dice_roll if dice_roll.count(val) > 1}
     return fixed_values 
+	
 
 # Function to simulate the player's turn
 def play_Turn():
@@ -83,11 +86,10 @@ def play_Turn():
     print("You decided to stop. Your score for this turn is:", score)
     return score
 
- # function to initialize and manage the game rounds
-def start_game():
-    
-    # Greets the player 
-    print ("Hello welcome to the game Tuple Out.")
+
+# start the game  
+# Greets the player 
+print ("Hello welcome to the game Tuple Out.")
 # Ask the user if they would like to play
 player_Choice = input("Would you like to play Tuple Out? (yes or no): ").strip().lower()
 
