@@ -1,0 +1,27 @@
+Tuple Out is an exciting dice-based game written in Python, where players compete to achieve a target score of 50 points within five rounds.
+
+ Each turn starts with rolling three dice, and the challenge is to avoid "tuple out" (when all three dice show the same value), which results in a score of zero for the round. 
+ 
+ Players can fix dice with matching values and choose whether to reroll the remaining dice or keep their current score. 
+ 
+ This decision-making element adds a layer of strategy as players balance the risks of rerolling with the potential for higher scores.
+
+Gameplay Features
+
+Interactive gameplay with prompts to guide players through each turn and round.
+
+Dynamic score tracking with immediate feedback on progress.
+
+Clear win conditions: reach a score of 50 points within five rounds to win, or tally the final score after the last round.
+
+Simple mechanics suitable for anyone familiar with basic dice games.
+
+Future Improvements
+
+Potential enhancements to Tuple Out include:
+
+Adding multiplayer functionality.
+
+Allowing adjustable target scores for more customizable gameplay.
+
+Incorporating additional features to increase complexity and engagement, such as bonus rounds or special dice mechanics.
