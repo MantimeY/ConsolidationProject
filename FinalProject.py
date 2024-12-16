@@ -1,7 +1,5 @@
  #importing modules I will need
-# import sys
-# import os
-# import csv
+
 import random
 
 # Function to  generate list of three random ints vetween 1 and 6, simulating the roll of three dice.
@@ -21,15 +19,14 @@ def check_tuple_out(dice_roll):
     result = dice_roll[0] == dice_roll[1] == dice_roll[2]
     return result
 
-# Function to find which dice gets fixed
-def get_fixed_dice(dice_roll):
+# Function to get fixed dice and their counts (using a dictionary)
+def get_fixed_dice_dict(dice_roll):
     """
-    Determines which dice are fixed (if two dice have the same value).
-    returns a set of fixed values.
+    Determines which dice are fixed (if two or more dice have the same value).
+    Returns a dictionary with fixed dice values as keys and their counts as values.
     """
-    fixed_values = {val for val in dice_roll if dice_roll.count(val) > 1}
-    return fixed_values 
-	
+    fixed_dice_dict = {val: dice_roll.count(val) for val in set(dice_roll) if dice_roll.count(val) > 1}
+    return fixed_dice_dict
 
 # Function to simulate the player's turn
 def play_Turn():
@@ -40,43 +37,44 @@ def play_Turn():
     dice = roll_Dice()
     print("You rolled: ", dice)
 
-
     # Check if the player "tuples out"
     if check_tuple_out(dice):
         print("Tuple out! You get 0 points this turn.")
         return 0
     
-    # get the fixed dice
-    fixed_dice = get_fixed_dice(dice)
-    print("Fixed dice (cannot be rerolled):", fixed_dice)
-    
+    # Get the fixed dice as a dictionary
+    fixed_dice_dict = get_fixed_dice_dict(dice)
+    fixed_dice_tuple = tuple(fixed_dice_dict.keys())  # Convert keys to tuple for immutability
+    print("Fixed dice (value and count):", fixed_dice_dict)
+    print("Fixed dice (immutable tuple):", fixed_dice_tuple)
+
     # Ask player if they want to reroll the non-fixed dice
     reroll_decision = input("Would you like to reroll the non-fixed dice? (yes or no): ").strip().lower()
 
-    # keep rerolling until the player decides to stop or "tuple out"
+    # Keep rerolling until the player decides to stop or "tuple out"
     while reroll_decision == "yes":
-        
-        # reroll the non-fixed dice
-        non_fixed_dice = [die for die in dice if die not in fixed_dice]
-        
+        # Reroll the non-fixed dice
+        non_fixed_dice = [die for die in dice if die not in fixed_dice_tuple]
         for i in range(len(non_fixed_dice)):
             non_fixed_dice[i] = random.randint(1, 6)
 
-        # update the dice with new rerolled values
+        # Update the dice with new rerolled values
         for i in range(len(dice)):
-            if dice[i] not in fixed_dice:
+            if dice[i] not in fixed_dice_tuple:
                 dice[i] = non_fixed_dice.pop(0)
 
-        print("Your rolled: ", dice)
+        print("You rolled: ", dice)
 
-        # check if the player "tuples out" after the reroll
+        # Check if the player "tuples out" after the reroll
         if check_tuple_out(dice):
             print("Tuple out! You get 0 points this turn.")
             return 0
 
-        # updated fixed dice
-        fixed_dice = get_fixed_dice(dice)
-        print("Fixed dice (cannot be rerolled):", fixed_dice)
+        # Update fixed dice
+        fixed_dice_dict = get_fixed_dice_dict(dice)
+        fixed_dice_tuple = tuple(fixed_dice_dict.keys())  # Convert keys to tuple for immutability
+        print("Fixed dice (value and count):", fixed_dice_dict)
+        print("Fixed dice (immutable tuple):", fixed_dice_tuple)
 
         # Ask the player again if they want to reroll the non-fixed dice
         reroll_decision = input("Would you like to reroll the non-fixed dice? (yes or no): ").strip().lower()
