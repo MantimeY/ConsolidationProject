@@ -1,4 +1,5 @@
-Tuple Out is an exciting dice-based game written in Python, where players compete to achieve a target score of 50 points within five rounds.
+Tuple Out is an exciting dice-based game written in Python, where players compete to achieve a target score of 50 points within five rounds. This simple yet strategic game challenges players to roll dice, make tactical decisions about rerolling, and avoid the dreaded "tuple out".
+
 
  Each turn starts with rolling three dice, and the challenge is to avoid "tuple out" (when all three dice show the same value), which results in a score of zero for the round. 
  
@@ -16,12 +17,36 @@ Clear win conditions: reach a score of 50 points within five rounds to win, or t
 
 Simple mechanics suitable for anyone familiar with basic dice games.
 
-Future Improvements
+Data Analysis: Provides a detailed analysis of gameplay statistics, including dice roll frequencies and round scores
+.
+Visualizations: Generates insightful graphs using Matplotlib and Seaborn to visualize dice rolls, round scores, and score distributions.
 
-Potential enhancements to Tuple Out include:
 
-Adding multiplayer functionality.
+Here’s the updated README with all the new features and formatting preserved:
 
-Allowing adjustable target scores for more customizable gameplay.
+Tuple Out
+Tuple Out is an exciting dice-based game written in Python, where players compete to achieve a target score of 50 points within five rounds. This simple yet strategic game challenges players to roll dice, make tactical decisions about rerolling, and avoid the dreaded "tuple out."
 
-Incorporating additional features to increase complexity and engagement, such as bonus rounds or special dice mechanics.
+Each turn starts with rolling three dice, and the challenge is to avoid "tuple out" (when all three dice show the same value), which results in a score of zero for the round.
+
+Players can fix dice with matching values and choose whether to reroll the remaining dice or keep their current score. This decision-making element adds a layer of strategy as players balance the risks of rerolling with the potential for higher scores.
+
+Gameplay Features
+Interactive gameplay with prompts to guide players through each turn and round.
+Dynamic score tracking with immediate feedback on progress.
+Clear win conditions: Reach a score of 50 points within five rounds to win, or tally the final score after the last round.
+Data Analysis: Provides a detailed analysis of gameplay statistics, including dice roll frequencies and round scores.
+Visualizations: Generates insightful graphs using Matplotlib and Seaborn to visualize dice rolls, round scores, and score distributions.
+Simple mechanics suitable for anyone familiar with basic dice games.
+
+New Features
+Gameplay Analysis: After each game, the following insights are provided:
+
+Frequency of dice values rolled (bar chart).
+Scores achieved in each round (bar chart).
+Round with the highest and lowest scores.
+Key statistics: mean, median, and standard deviation of scores.
+
+Advanced Data Visualization:
+Score Distribution: Box plot visualization for a deeper understanding of score variability.
+Detailed Dataframe: A summary table showing scores, dice rolls, and round-by-round performance.
