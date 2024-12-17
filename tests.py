@@ -1,7 +1,7 @@
 
 
 import random
-
+import FinalProject
 # Function to roll dice
 def roll_Dice():
     """

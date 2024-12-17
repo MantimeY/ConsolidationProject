@@ -65,16 +65,16 @@ def play_Turn(data_analysis):
 
     # Keep rerolling until the player decides to stop or "tuple out"
     while reroll_decision == "yes":
-        # Reroll the non-fixed dice
-        non_fixed_dice = [die for die in dice if die not in fixed_dice_tuple]
-        for i in range(len(non_fixed_dice)):
-            non_fixed_dice[i] = random.randint(1, 6)
-
-        # Update the dice with new rerolled values
-        for i in range(len(dice)):
-            if dice[i] not in fixed_dice_tuple:
-                dice[i] = non_fixed_dice.pop(0)
-        data_analysis.extend(non_fixed_dice)
+        # Identify non-fixed dice and save the current values to data_analysis before reroll
+        non_fixed_dice_indices = [i for i in range(len(dice)) if dice[i] not in fixed_dice_tuple]
+        
+        # re roll and update the dice 
+         # Reroll and update the dice
+        for i in non_fixed_dice_indices:
+            old_value = dice[i]
+            new_value = random.randint(1, 6)
+            dice[i] = new_value
+            data_analysis.append(new_value)  # fixing the count problem
 
         print("You rolled: ", dice)
 
@@ -164,6 +164,11 @@ if player_Choice == "yes":
       print("Round with the most score: Round " + str(max_score_round ))
       print("Round with the least score: Round " + str(min_score_round ))
     
+	 
+	# Uses time sleep to make sure that all graphs are shown and that they dont just all pop up all at once 
+    # the next graph will only show up after the player exits out of the previous graph
+    time.sleep(1)
+    
       # data visualization of the roll counts
     plt.figure(figsize=(10, 6))
     plt.bar(roll_counts.keys(), roll_counts.values(), color='blue')
@@ -172,7 +177,8 @@ if player_Choice == "yes":
     plt.ylabel("Frequency")
     plt.show()
     
-    time.sleep(2)
+	# Uses time sleep to make sure that all graphs are shown and that they dont just all pop up all at once
+    time.sleep(1)
 	
     # Data Visualization of scores for each round
     plt.figure(figsize=(10, 6))
@@ -183,7 +189,7 @@ if player_Choice == "yes":
     plt.show()
       
     # created dataframe to store and analyze the scores and rolles
-
+    # Persnoal Comment: Similar to R studio look for more tutorials
     df = pd.DataFrame({
     'Round': list(range(1, len(round_scores) + 1)),
     'Score': round_scores,
@@ -199,7 +205,7 @@ if player_Choice == "yes":
     print("Median Score:" + str(median_score))
     print("Standard Deviation of Scores:" +str(std_dev_score))
 
-    time.sleep(2)
+    time.sleep(1)
     # Using Seaborn for a more advanced plot
     sns.boxplot(data=round_scores, color='lightblue')
     plt.title('Distribution of Scores Across Rounds')
